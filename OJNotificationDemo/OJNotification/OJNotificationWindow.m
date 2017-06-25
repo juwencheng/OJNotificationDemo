@@ -187,8 +187,6 @@
     }
 }
 
-
-
 #pragma mark Lazy initialize
 - (OJNotificationView *)content {
     if (!_content) {
