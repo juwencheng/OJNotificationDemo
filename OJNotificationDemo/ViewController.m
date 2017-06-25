@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "OJNotificationWindow.h"
 
 @interface ViewController ()
 
@@ -25,5 +26,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)showNotification:(id)sender {
+    [OJNotificationWindow showNotificationWithModel:nil];
+}
 
 @end

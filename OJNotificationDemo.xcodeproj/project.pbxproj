@@ -13,6 +13,10 @@
 		333C5C9F1EFF5C6600036094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333C5C9D1EFF5C6600036094 /* Main.storyboard */; };
 		333C5CA11EFF5C6600036094 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 333C5CA01EFF5C6600036094 /* Assets.xcassets */; };
 		333C5CA41EFF5C6600036094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333C5CA21EFF5C6600036094 /* LaunchScreen.storyboard */; };
+		333C5CAF1EFF5CBD00036094 /* UIView+OutletBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 333C5CAE1EFF5CBD00036094 /* UIView+OutletBinding.m */; };
+		333C5CB21EFF5CC400036094 /* OJNotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 333C5CB11EFF5CC400036094 /* OJNotificationWindow.m */; };
+		333C5CB61EFF5CCB00036094 /* OJNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 333C5CB41EFF5CCB00036094 /* OJNotificationView.m */; };
+		333C5CB71EFF5CCB00036094 /* OJNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333C5CB51EFF5CCB00036094 /* OJNotificationView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,13 @@
 		333C5CA01EFF5C6600036094 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		333C5CA31EFF5C6600036094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		333C5CA51EFF5C6600036094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		333C5CAD1EFF5CBD00036094 /* UIView+OutletBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OutletBinding.h"; sourceTree = "<group>"; };
+		333C5CAE1EFF5CBD00036094 /* UIView+OutletBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OutletBinding.m"; sourceTree = "<group>"; };
+		333C5CB01EFF5CC400036094 /* OJNotificationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OJNotificationWindow.h; sourceTree = "<group>"; };
+		333C5CB11EFF5CC400036094 /* OJNotificationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OJNotificationWindow.m; sourceTree = "<group>"; };
+		333C5CB31EFF5CCB00036094 /* OJNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OJNotificationView.h; sourceTree = "<group>"; };
+		333C5CB41EFF5CCB00036094 /* OJNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OJNotificationView.m; sourceTree = "<group>"; };
+		333C5CB51EFF5CCB00036094 /* OJNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OJNotificationView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +69,7 @@
 		333C5C931EFF5C6600036094 /* OJNotificationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				333C5CAB1EFF5C9200036094 /* OJNotification */,
 				333C5C971EFF5C6600036094 /* AppDelegate.h */,
 				333C5C981EFF5C6600036094 /* AppDelegate.m */,
 				333C5C9A1EFF5C6600036094 /* ViewController.h */,
@@ -77,6 +89,28 @@
 				333C5C951EFF5C6600036094 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		333C5CAB1EFF5C9200036094 /* OJNotification */ = {
+			isa = PBXGroup;
+			children = (
+				333C5CB31EFF5CCB00036094 /* OJNotificationView.h */,
+				333C5CB41EFF5CCB00036094 /* OJNotificationView.m */,
+				333C5CB51EFF5CCB00036094 /* OJNotificationView.xib */,
+				333C5CB01EFF5CC400036094 /* OJNotificationWindow.h */,
+				333C5CB11EFF5CC400036094 /* OJNotificationWindow.m */,
+				333C5CAC1EFF5CB300036094 /* Category */,
+			);
+			path = OJNotification;
+			sourceTree = "<group>";
+		};
+		333C5CAC1EFF5CB300036094 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				333C5CAD1EFF5CBD00036094 /* UIView+OutletBinding.h */,
+				333C5CAE1EFF5CBD00036094 /* UIView+OutletBinding.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +175,7 @@
 				333C5CA41EFF5C6600036094 /* LaunchScreen.storyboard in Resources */,
 				333C5CA11EFF5C6600036094 /* Assets.xcassets in Resources */,
 				333C5C9F1EFF5C6600036094 /* Main.storyboard in Resources */,
+				333C5CB71EFF5CCB00036094 /* OJNotificationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +187,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				333C5C9C1EFF5C6600036094 /* ViewController.m in Sources */,
+				333C5CB61EFF5CCB00036094 /* OJNotificationView.m in Sources */,
+				333C5CAF1EFF5CBD00036094 /* UIView+OutletBinding.m in Sources */,
+				333C5CB21EFF5CC400036094 /* OJNotificationWindow.m in Sources */,
 				333C5C991EFF5C6600036094 /* AppDelegate.m in Sources */,
 				333C5C961EFF5C6600036094 /* main.m in Sources */,
 			);
