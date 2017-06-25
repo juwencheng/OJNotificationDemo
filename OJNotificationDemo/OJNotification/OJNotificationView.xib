@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y66-Ak-Hkf" userLabel="header">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="33" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2小时前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uL-WK-k6X" userLabel="time">
+                            <rect key="frame" x="322.5" y="8" width="44.5" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="32" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="华西健康" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-Dh-H7s" userLabel="appName">
+                            <rect key="frame" x="36" y="8" width="49.5" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" tag="31" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HTB-Im-t8L" userLabel="appIcon">
+                            <rect key="frame" x="8" y="5.5" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="HTB-Im-t8L" secondAttribute="height" id="Wte-rs-aaO"/>
+                                <constraint firstAttribute="width" constant="20" id="sLS-sc-0VK"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ygk-Dh-H7s" firstAttribute="leading" secondItem="HTB-Im-t8L" secondAttribute="trailing" constant="8" id="H59-CD-csT"/>
+                        <constraint firstAttribute="trailing" secondItem="4uL-WK-k6X" secondAttribute="trailing" constant="8" id="LuI-tp-lrj"/>
+                        <constraint firstItem="ygk-Dh-H7s" firstAttribute="centerY" secondItem="Y66-Ak-Hkf" secondAttribute="centerY" id="OiS-pR-KuJ"/>
+                        <constraint firstAttribute="height" constant="30" id="QbP-wr-8TJ"/>
+                        <constraint firstItem="4uL-WK-k6X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ygk-Dh-H7s" secondAttribute="trailing" constant="16" id="Wid-Ks-dGM"/>
+                        <constraint firstItem="HTB-Im-t8L" firstAttribute="centerY" secondItem="Y66-Ak-Hkf" secondAttribute="centerY" id="oeG-OH-iUm"/>
+                        <constraint firstItem="4uL-WK-k6X" firstAttribute="centerY" secondItem="Y66-Ak-Hkf" secondAttribute="centerY" id="p8i-sb-4b3"/>
+                        <constraint firstItem="HTB-Im-t8L" firstAttribute="leading" secondItem="Y66-Ak-Hkf" secondAttribute="leading" constant="8" id="pKi-y5-vj6"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="体检预约提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiB-Un-35g" userLabel="msgTitle">
+                    <rect key="frame" x="8" y="38" width="359" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <attributedString key="userComments">
+                        <fragment content="app detail">
+                            <attributes>
+                                <font key="NSFont" metaFont="smallSystem"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您预约了后天（2017年6月10日）在华西体检，请不要错过哦！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEX-RR-nkv" userLabel="msgDetail">
+                    <rect key="frame" x="8" y="58" width="359" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Y66-Ak-Hkf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8rq-ZC-cLr"/>
+                <constraint firstAttribute="trailing" secondItem="Y66-Ak-Hkf" secondAttribute="trailing" id="AMq-ee-d8y"/>
+                <constraint firstItem="zEX-RR-nkv" firstAttribute="leading" secondItem="JiB-Un-35g" secondAttribute="leading" id="Gvs-SC-gOy"/>
+                <constraint firstAttribute="trailing" secondItem="JiB-Un-35g" secondAttribute="trailing" constant="8" id="McP-j5-4E9"/>
+                <constraint firstItem="JiB-Un-35g" firstAttribute="top" secondItem="Y66-Ak-Hkf" secondAttribute="bottom" constant="8" id="V18-6F-puw"/>
+                <constraint firstItem="JiB-Un-35g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="YN7-JK-zpb"/>
+                <constraint firstItem="zEX-RR-nkv" firstAttribute="top" secondItem="JiB-Un-35g" secondAttribute="bottom" constant="4" id="YNs-8F-VhC"/>
+                <constraint firstItem="Y66-Ak-Hkf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bSk-SW-V3u"/>
+                <constraint firstAttribute="trailing" secondItem="zEX-RR-nkv" secondAttribute="trailing" constant="8" id="jt3-YJ-gXd"/>
+                <constraint firstAttribute="bottom" secondItem="zEX-RR-nkv" secondAttribute="bottom" constant="4" id="tF2-Mn-hIF"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-58" y="-84"/>
+        </view>
+    </objects>
+</document>
