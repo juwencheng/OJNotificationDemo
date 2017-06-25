@@ -20,4 +20,9 @@
  */
 - (void)assertProperty:(NSString *)property class:(Class)clazz;
 
+/**
+ *  为子类预留更新约束的接口。重写时不用调用 [super doUpdateConstraints]
+ */
+- (void)doUpdateConstraints;
+
 @end

@@ -30,7 +30,7 @@
     
     OJNotificationModel *model2 = [[OJNotificationModel alloc] init];
     model2.time = @"20:30";
-    model2.title = @"农家乐";
+    model2.title = @"";
     model2.detail = @"根据您的搜索记录，我们为您私人定制了农家乐，赶紧去看看吧！";
     model2.type = @"熊猫导游";
     
@@ -52,6 +52,7 @@
 }
 
 - (IBAction)showNotification:(id)sender {
+    //arc4random()%self.testData.count
     [OJNotificationWindow showNotificationWithModel:self.testData[arc4random()%self.testData.count]];
 }
 

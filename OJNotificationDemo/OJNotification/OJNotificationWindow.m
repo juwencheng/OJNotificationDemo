@@ -101,6 +101,7 @@
     switch (_presentState) {
             
         case OJNotificationPresentStateNone:
+            self.content.notification = model;
             [self preparePresetAnimation:YES];
             break;
         case OJNotificationPresentStateShowing:
@@ -128,6 +129,7 @@
             break;
         case OJNotificationPresentStateFinished:
             // 重新设置显示内容
+            self.content.notification = model;
             [self preparePresetAnimation:NO];
             break;
         default:

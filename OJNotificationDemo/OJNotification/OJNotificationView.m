@@ -15,6 +15,7 @@
 [UIColor colorWithRed:(float)((hex&0xFF0000)>>16)/255.0 green:(float)((hex&0xFF00)>>8)/255.0 blue:(float)((hex&0xFF))/255.0 alpha:1]
 #define HEXCOLORWITALPHA(hex, a) \
 [UIColor colorWithRed:(float)((hex&0xFF0000)>>16)/255.0 green:(float)((hex&0xFF00)>>8)/255.0 blue:(float)((hex&0xFF))/255.0 alpha:a]
+#define XOR(a,b) ((a & ~b) | (~a & b))
 
 /**
  * 用16进制表示tag值，如果有多位，表示有层级关系，加入父视图的tag是15，子视图的是1，那么tag的值是0xf1
@@ -41,7 +42,7 @@ static NSInteger tTime = 0x33;
 
 @implementation OJNotificationView
 
-#pragma mark - 初始化工作
+#pragma mark 初始化工作
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -67,6 +68,44 @@ static NSInteger tTime = 0x33;
     [self styleView];
 }
 
+- (void)updateConstraints {
+    [super updateConstraints];
+    
+    [self doUpdateConstraints];
+}
+
+- (void)doUpdateConstraints {
+    // 由当前结构决定self只有一个直接子视图
+    UIView *nibView = [[self subviews] firstObject];
+    if (self.msgTitleLabel.hidden) {
+        // 断开msgTitleLabel和heade的约束
+        for (NSLayoutConstraint *constraint in [nibView constraints]) {
+            // identifier 是在xib中指定的
+            if ([constraint.identifier isEqualToString:@"header-title-conn"] ||
+                [constraint.identifier isEqualToString:@"header-detail-conn"]) {
+                [nibView removeConstraint:constraint];
+            }
+        }
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.msgDetailLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeBottom multiplier:1 constant:8];
+        constraint.identifier = @"header-detail-conn";
+        [nibView addConstraint:constraint];
+    }else {
+        // 断开msgTitleLabel和heade的约束
+        for (NSLayoutConstraint *constraint in [nibView constraints]) {
+            // identifier 是在xib中指定的
+            if ([constraint.identifier isEqualToString:@"header-detail-conn"] ||
+                [constraint.identifier isEqualToString:@"header-title-conn"]) {
+                [nibView removeConstraint:constraint];
+            }
+        }
+        
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.msgTitleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeBottom multiplier:1 constant:8];
+        constraint.identifier = @"header-title-conn";
+        [nibView addConstraint:constraint];
+    }
+}
+
+#pragma mark 载入并约束视图
 /**
  * 从 xib 文件中获得 UIView ， 并返回
  */
@@ -89,6 +128,7 @@ static NSInteger tTime = 0x33;
     }
 }
 
+#pragma mark 绑定属性到资源文件中
 /**
  * 第一种方案，使用 viewWithTag: 方法，遍历所有子视图查找与之对应的tag
  */
@@ -142,12 +182,17 @@ static NSInteger tTime = 0x33;
 }
 
 - (void)setNotification:(OJNotificationModel *)notification {
-    _notification = notification;
-    
     self.timeLabel.text = notification.time;
     self.msgTitleLabel.text = notification.title;
     self.msgDetailLabel.text = notification.detail;
     self.appNameLabel.text = notification.type;
+    
+    self.msgTitleLabel.hidden = notification.title.length==0;
+    
+    if (XOR(_notification.title.length , notification.title.length)) {
+        [self setNeedsUpdateConstraints];
+    }
+    _notification = notification;
 }
 
 #pragma mark Lazy initialize 
