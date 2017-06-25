@@ -19,19 +19,19 @@
                 <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y66-Ak-Hkf" userLabel="header">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="33" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2小时前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uL-WK-k6X" userLabel="time">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2小时前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uL-WK-k6X" userLabel="time">
                             <rect key="frame" x="322.5" y="8" width="44.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="32" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="华西健康" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-Dh-H7s" userLabel="appName">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="华西健康" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-Dh-H7s" userLabel="appName">
                             <rect key="frame" x="36" y="8" width="49.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" tag="31" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HTB-Im-t8L" userLabel="appIcon">
+                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HTB-Im-t8L" userLabel="appIcon">
                             <rect key="frame" x="8" y="5.5" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="HTB-Im-t8L" secondAttribute="height" id="Wte-rs-aaO"/>

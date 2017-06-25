@@ -8,6 +8,7 @@
 
 #import "OJNotificationView.h"
 #import "UIView+OutletBinding.h"
+#import "OJNotificationModel.h"
 
 #define BINGDEBUG 0
 #define HEXCOLOR(hex, a)  \
@@ -75,8 +76,6 @@ static NSInteger tTime = 0x33;
     // clear nibView background color
     nibView.backgroundColor = [UIColor clearColor];
     return nibView;
-    
-    
 }
 
 /**
@@ -114,15 +113,23 @@ static NSInteger tTime = 0x33;
     
     // 添加调试信息，鉴别类型是否一样
 #if BINGDEBUG
-    NSAssert(![self.appIcon isKindOfClass:[UIImageView class]], @"appIcon 必须是 UIImageView 类型");
-    NSAssert(![self.appNameLabel isKindOfClass:[UIImageView class]], @"appNameLabel 必须是 UILabel 类型");
-    NSAssert(![self.timeLabel isKindOfClass:[UIImageView class]], @"timeLabel 必须是 UILabel 类型");
-    NSAssert(![self.msgTitleLabel isKindOfClass:[UIImageView class]], @"msgTitleLabel 必须是 UILabel 类型");
-    NSAssert(![self.msgDetailLabel isKindOfClass:[UIImageView class]], @"msgDetailLabel 必须是 UILabel 类型");
-    NSAssert(![self.headerView isKindOfClass:[UIView class]], @"headerView 必须是 UIView 类型");
+    [self assertProperty:@"appIcon" class:[UIImageView class]];
+    [self assertProperty:@"appNameLabel" class:[UILabel class]];
+    [self assertProperty:@"timeLabel" class:[UILabel class]];
+    [self assertProperty:@"msgTitleLabel" class:[UILabel class]];
+    [self assertProperty:@"msgDetailLabel" class:[UILabel class]];
+    [self assertProperty:@"headerView" class:[UIView class]];
 #endif
 }
 
+/**
+ * 校验通过 viewWithTag: 获得到的属性值是否为指定类型
+ */
+- (void)assertProperty:(NSString *)property class:(Class)clazz {
+    id propertyValue = [self valueForKey:property];
+    NSString *errorMsg = [NSString stringWithFormat:@"%@ 必须是 %@ 类型", property, NSStringFromClass(clazz)];
+    NSAssert([propertyValue isKindOfClass:clazz], errorMsg);
+}
 
 /**
  * 为视图添加样式
@@ -132,6 +139,23 @@ static NSInteger tTime = 0x33;
     self.clipsToBounds = 10;
     
     self.backgroundColor = HEXCOLORWITALPHA(0xF1F1F1, 1);
+}
+
+- (void)setNotification:(OJNotificationModel *)notification {
+    _notification = notification;
+    
+    self.timeLabel.text = notification.time;
+    self.msgTitleLabel.text = notification.title;
+    self.msgDetailLabel.text = notification.detail;
+    self.appNameLabel.text = notification.type;
+}
+
+#pragma mark Lazy initialize 
+- (NSString *)nibName {
+    if (!_nibName) {
+        _nibName = @"OJNotificationView";
+    }
+    return _nibName;
 }
 
 - (void)dealloc {

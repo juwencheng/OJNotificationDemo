@@ -17,6 +17,7 @@
 		333C5CB21EFF5CC400036094 /* OJNotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 333C5CB11EFF5CC400036094 /* OJNotificationWindow.m */; };
 		333C5CB61EFF5CCB00036094 /* OJNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 333C5CB41EFF5CCB00036094 /* OJNotificationView.m */; };
 		333C5CB71EFF5CCB00036094 /* OJNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333C5CB51EFF5CCB00036094 /* OJNotificationView.xib */; };
+		333C5CBA1EFFE04700036094 /* OJNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333C5CB91EFFE04700036094 /* OJNotificationModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		333C5CB31EFF5CCB00036094 /* OJNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OJNotificationView.h; sourceTree = "<group>"; };
 		333C5CB41EFF5CCB00036094 /* OJNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OJNotificationView.m; sourceTree = "<group>"; };
 		333C5CB51EFF5CCB00036094 /* OJNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OJNotificationView.xib; sourceTree = "<group>"; };
+		333C5CB81EFFE04700036094 /* OJNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OJNotificationModel.h; sourceTree = "<group>"; };
+		333C5CB91EFFE04700036094 /* OJNotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OJNotificationModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 		333C5CAB1EFF5C9200036094 /* OJNotification */ = {
 			isa = PBXGroup;
 			children = (
+				333C5CB81EFFE04700036094 /* OJNotificationModel.h */,
+				333C5CB91EFFE04700036094 /* OJNotificationModel.m */,
 				333C5CB31EFF5CCB00036094 /* OJNotificationView.h */,
 				333C5CB41EFF5CCB00036094 /* OJNotificationView.m */,
 				333C5CB51EFF5CCB00036094 /* OJNotificationView.xib */,
@@ -191,6 +196,7 @@
 				333C5CAF1EFF5CBD00036094 /* UIView+OutletBinding.m in Sources */,
 				333C5CB21EFF5CC400036094 /* OJNotificationWindow.m in Sources */,
 				333C5C991EFF5C6600036094 /* AppDelegate.m in Sources */,
+				333C5CBA1EFFE04700036094 /* OJNotificationModel.m in Sources */,
 				333C5C961EFF5C6600036094 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

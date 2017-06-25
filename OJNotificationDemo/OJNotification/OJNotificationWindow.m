@@ -12,16 +12,17 @@
 // TODO: 处理 window 旋转后的布局
 
 @interface OJNotificationWindow ()
-@property (nonatomic, strong) OJNotificationView *content;             ///< 内部的通知视图
+
+@property (nonatomic, strong) OJNotificationView *content;           ///< 内部的通知视图
 @property (nonatomic, strong) NSLayoutConstraint *topConst;          ///< content 和 window 顶部的约束，用于动画显示
 
 @property (nonatomic, assign) OJNotificationPresentState presentState; ///< 展示状态
-@property (nonatomic, assign) NSTimeInterval nw_animationDuration;   ///< 展示动画时长
-@property (nonatomic, assign) NSTimeInterval nw_presentDuration;     ///< 展示时间 default 6
+@property (nonatomic, assign) NSTimeInterval nw_animationDuration;     ///< 展示动画时长
+@property (nonatomic, assign) NSTimeInterval nw_presentDuration;       ///< 展示时间 default 6
 
-@property (nonatomic, assign) NSTimer *nw_animationTimer;            ///< 动画 timer
+@property (nonatomic, assign) NSTimer *nw_animationTimer;              ///< 动画 timer
 
-@property (nonatomic, strong) NSDictionary *presentingModel;         ///< 展示的message，用于判断是否需要更新当前通知
+@property (nonatomic, strong) OJNotificationModel *presentingNotification;   ///< 展示的message，用于判断是否需要更新当前通知
 
 @property (nonatomic, strong) UIVisualEffectView *blurView;
 
@@ -90,11 +91,11 @@
 }
 
 #pragma mark 展示通知
-+ (void)showNotificationWithModel:(NSDictionary *)model {
++ (void)showNotificationWithModel:(OJNotificationModel *)model {
     [[self sharedInstance] showNotificationWithModel:model];
 }
 
-- (void)showNotificationWithModel:(NSDictionary *)model {
+- (void)showNotificationWithModel:(OJNotificationModel *)model {
     [self makeKeyAndVisible];
     // 应该有state
     switch (_presentState) {
@@ -106,7 +107,7 @@
         {
             // 这里应该用compare进行对比
             // 如果是重复消息，不重置显示时间
-            if (self.presentingModel == model) {
+            if (self.presentingNotification == model) {
                 break;
             }
             if (self.nw_animationTimer) {
@@ -115,7 +116,7 @@
             // 重置显示时间
             self.nw_animationTimer = [NSTimer scheduledTimerWithTimeInterval:self.nw_presentDuration target:self selector:@selector(dismissNotification) userInfo:nil repeats:NO];
             // 更新显示内容
-            self.content.model = model;
+            self.content.notification = model;
         }
             break;
         case OJNotificationPresentStateHiding:

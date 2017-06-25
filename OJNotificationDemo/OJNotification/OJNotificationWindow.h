@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class OJNotificationModel;
 
 typedef enum : NSUInteger {
     OJNotificationPresentStateNone,     ///< 没有展示过一次
@@ -17,7 +18,7 @@ typedef enum : NSUInteger {
 
 @interface OJNotificationWindow : UIWindow
 
-+ (void)showNotificationWithModel:(NSDictionary *)model;
++ (void)showNotificationWithModel:(OJNotificationModel *)notification;
 
 + (void)dismissNotification ;
 

@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class OJNotificationModel;
 
 @interface OJNotificationView : UIView
 
-@property (nonatomic, strong) NSDictionary *model;
+@property (nonatomic, strong) OJNotificationModel *notification;  ///< 消息数据模型类
+
+@property (nonatomic, copy) NSString *nibName;  ///< 需要绑定的布局文件名字，供子类修改。Default OJNotificationView
+
+/**
+ *  校验通过 viewWithTag: 获得到的属性值是否为指定类型
+ */
+- (void)assertProperty:(NSString *)property class:(Class)clazz;
 
 @end
