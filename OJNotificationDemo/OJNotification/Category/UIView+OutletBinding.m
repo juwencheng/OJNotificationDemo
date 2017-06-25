@@ -21,7 +21,7 @@
     NSInteger newTag = [self inverseHexNumber:tag];
     UIView *view = self;
     while(newTag) {
-        view = [view ob_viewWithTag:tag];
+        view = [view ob_viewWithTag:(newTag & 0xF)];
         newTag = newTag >> 4;
     }
     if (view) {
