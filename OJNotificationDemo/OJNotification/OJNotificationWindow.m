@@ -9,6 +9,21 @@
 #import "OJNotificationWindow.h"
 #import "OJNotificationView.h"
 
+/**
+ *  实际没有用到，仅用于支持旋转
+ */
+@interface NotUsedViewController : UIViewController
+
+@end
+
+@implementation NotUsedViewController
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+@end
+
 // TODO: 处理 window 旋转后的布局
 
 @interface OJNotificationWindow ()
@@ -61,11 +76,11 @@
 }
 
 - (void)commonInit {
-    
+    self.rootViewController = [[NotUsedViewController alloc] init];
     // variable part
     _nw_animationDuration = 0.25;
     _nw_presentDuration = 6.0f;
-    
+
 //    self.alpha = 0.9;
     [self setupSubviews];
     [self registOrientationNotification];
@@ -181,13 +196,7 @@
 }
 
 - (void)orientationChanged:(NSNotification *)notification {
-    //    UIDeviceOrientation orientation = [notification.object integerForKey:@"UIDeviceOrientationRotateAnimatedUserInfoKey"];
     self.frame = [UIScreen mainScreen].bounds;
-    if (self.presentState == OJNotificationPresentStateShowing) {
-        [UIView animateWithDuration:0.25 animations:^{
-            [self.content layoutIfNeeded];
-        }];
-    }
 }
 
 #pragma mark Lazy initialize
