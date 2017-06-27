@@ -20,6 +20,8 @@ typedef enum : NSUInteger {
 
 + (void)showNotificationWithModel:(OJNotificationModel *)notification;
 
++ (void)showNotificationWithModel:(OJNotificationModel *)notification viberate:(BOOL)viberate;
+
 + (void)dismissNotification ;
 
 @end

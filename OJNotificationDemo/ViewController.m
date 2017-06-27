@@ -53,7 +53,7 @@
 
 - (IBAction)showNotification:(id)sender {
     //arc4random()%self.testData.count
-    [OJNotificationWindow showNotificationWithModel:self.testData[arc4random()%self.testData.count]];
+    [OJNotificationWindow showNotificationWithModel:self.testData[arc4random()%self.testData.count] viberate:YES];
 }
 
 @end

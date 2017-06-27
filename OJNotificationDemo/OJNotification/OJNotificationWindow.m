@@ -8,6 +8,7 @@
 
 #import "OJNotificationWindow.h"
 #import "OJNotificationView.h"
+#import <AudioToolbox/AudioServices.h>
 
 /**
  *  实际没有用到，仅用于支持旋转
@@ -106,6 +107,13 @@
 }
 
 #pragma mark 展示通知
++ (void)showNotificationWithModel:(OJNotificationModel *)notification viberate:(BOOL)viberate {
+    if (viberate) {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
+    [self showNotificationWithModel:notification];
+}
+
 + (void)showNotificationWithModel:(OJNotificationModel *)model {
     [[self sharedInstance] showNotificationWithModel:model];
 }
@@ -215,7 +223,7 @@
 
 - (UIVisualEffectView *)blurView {
     if (!_blurView) {
-        UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         _blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
     }
     return _blurView;
