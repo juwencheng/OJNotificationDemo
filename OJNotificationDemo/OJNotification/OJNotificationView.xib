@@ -66,7 +66,7 @@
                     </attributedString>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您预约了后天（2017年6月10日）在华西体检，请不要错过哦！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEX-RR-nkv" userLabel="msgDetail">
-                    <rect key="frame" x="8" y="58" width="359" height="34"/>
+                    <rect key="frame" x="8" y="58" width="359" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                 <constraint firstItem="zEX-RR-nkv" firstAttribute="top" secondItem="JiB-Un-35g" secondAttribute="bottom" constant="4" id="YNs-8F-VhC"/>
                 <constraint firstItem="Y66-Ak-Hkf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bSk-SW-V3u"/>
                 <constraint firstAttribute="trailing" secondItem="zEX-RR-nkv" secondAttribute="trailing" constant="8" id="jt3-YJ-gXd"/>
-                <constraint firstAttribute="bottom" secondItem="zEX-RR-nkv" secondAttribute="bottom" constant="4" id="tF2-Mn-hIF"/>
+                <constraint firstAttribute="bottom" secondItem="zEX-RR-nkv" secondAttribute="bottom" constant="8" id="tF2-Mn-hIF"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
