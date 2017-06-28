@@ -77,31 +77,31 @@ static NSInteger tTime = 0x33;
 - (void)doUpdateConstraints {
     // 由当前结构决定self只有一个直接子视图
     UIView *nibView = [[self subviews] firstObject];
+    [self resetHeaderAndTitleAndDetailConstrain:nibView];
     if (self.msgTitleLabel.hidden) {
-        // 断开msgTitleLabel和heade的约束
-        for (NSLayoutConstraint *constraint in [nibView constraints]) {
-            // identifier 是在xib中指定的
-            if ([constraint.identifier isEqualToString:@"header-title-conn"] ||
-                [constraint.identifier isEqualToString:@"header-detail-conn"]) {
-                [nibView removeConstraint:constraint];
-            }
-        }
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.msgDetailLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeBottom multiplier:1 constant:8];
         constraint.identifier = @"header-detail-conn";
         [nibView addConstraint:constraint];
     }else {
-        // 断开msgTitleLabel和heade的约束
-        for (NSLayoutConstraint *constraint in [nibView constraints]) {
-            // identifier 是在xib中指定的
-            if ([constraint.identifier isEqualToString:@"header-detail-conn"] ||
-                [constraint.identifier isEqualToString:@"header-title-conn"]) {
-                [nibView removeConstraint:constraint];
-            }
-        }
-        
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.msgTitleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeBottom multiplier:1 constant:8];
         constraint.identifier = @"header-title-conn";
         [nibView addConstraint:constraint];
+    }
+}
+
+/**
+ *  重置 header 和 title detail label 的约束，动态显示 title
+ * 
+ *  @param nibView  header title detail 的父视图
+ */
+- (void)resetHeaderAndTitleAndDetailConstrain:(UIView *)nibView {
+    // 断开msgTitleLabel和heade的约束
+    for (NSLayoutConstraint *constraint in [nibView constraints]) {
+        // identifier 是在xib中指定的
+        if ([constraint.identifier isEqualToString:@"header-detail-conn"] ||
+            [constraint.identifier isEqualToString:@"header-title-conn"]) {
+            [nibView removeConstraint:constraint];
+        }
     }
 }
 
