@@ -10,14 +10,14 @@
 
 @implementation UIView (OutletBinding)
 
-- (void)outletPropertyName:(NSString *)name toTag:(NSInteger)tag {
+- (void)outletProperty:(NSString *)property toTag:(NSInteger)tag {
     UIView *view = [self viewWithTag:tag];
     if (view) {
-        [self setValue:view forKey:name];
+        [self setValue:view forKey:property];
     }
 }
 
-- (void)connectPropertyName:(NSString *)name tag:(NSInteger)tag to:(UIView *)target {
+- (void)connectProperty:(NSString *)property tag:(NSInteger)tag to:(UIView *)target {
     NSInteger newTag = [self inverseHexNumber:tag];
     UIView *view = self;
     while(newTag) {
@@ -25,8 +25,17 @@
         newTag = newTag >> 4;
     }
     if (view) {
-        [target setValue:view forKey:name];
+        [target setValue:view forKey:property];
     }
+}
+
+/**
+ * 校验通过 viewWithTag: 获得到的属性值是否为指定类型
+ */
+- (void)assertProperty:(NSString *)property class:(Class)clazz {
+    id propertyValue = [self valueForKey:property];
+    NSString *errorMsg = [NSString stringWithFormat:@"%@ 必须是 %@ 类型", property, NSStringFromClass(clazz)];
+    NSAssert([propertyValue isKindOfClass:clazz], errorMsg);
 }
 
 /**

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "OJNotificationModel.h"
 #import "OJNotificationWindow.h"
+#import "OJNormalNotificationHandler.h"
 
 @interface ViewController ()
 
@@ -53,7 +54,7 @@
 
 - (IBAction)showNotification:(id)sender {
     //arc4random()%self.testData.count
-    [OJNotificationWindow showNotificationWithModel:self.testData[arc4random()%self.testData.count] viberate:YES];
+    [OJNotificationWindow showNotificationWithModel:self.testData[arc4random()%self.testData.count] viberate:YES actionHandler:(id)[OJNormalNotificationHandler class]];
 }
 
 @end

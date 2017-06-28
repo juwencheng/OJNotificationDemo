@@ -9,12 +9,10 @@
 #import "OJNotificationView.h"
 #import "UIView+OutletBinding.h"
 #import "OJNotificationModel.h"
+#import "UIView+NibView.h"
+#import "OJColor.h"
 
 #define BINGDEBUG 0
-#define HEXCOLOR(hex, a)  \
-[UIColor colorWithRed:(float)((hex&0xFF0000)>>16)/255.0 green:(float)((hex&0xFF00)>>8)/255.0 blue:(float)((hex&0xFF))/255.0 alpha:1]
-#define HEXCOLORWITALPHA(hex, a) \
-[UIColor colorWithRed:(float)((hex&0xFF0000)>>16)/255.0 green:(float)((hex&0xFF00)>>8)/255.0 blue:(float)((hex&0xFF))/255.0 alpha:a]
 #define XOR(a,b) ((a & ~b) | (~a & b))
 
 /**
@@ -61,7 +59,7 @@ static NSInteger tTime = 0x33;
 
 - (void)commonInit {
     // 如果需要 还可以更改xib 实现样式的更改
-    UIView *nibView = [self loadViewWithNibName:@"OJNotificationView"];
+    UIView *nibView = [self loadViewWithNibName:self.nibName];
     
     [self addConstraintToNibView:nibView];
     [self connectFromView:nibView];
@@ -77,46 +75,35 @@ static NSInteger tTime = 0x33;
 - (void)doUpdateConstraints {
     // 由当前结构决定self只有一个直接子视图
     UIView *nibView = [[self subviews] firstObject];
+    [self resetHeaderAndTitleAndDetailConstrain:nibView];
     if (self.msgTitleLabel.hidden) {
-        // 断开msgTitleLabel和heade的约束
-        for (NSLayoutConstraint *constraint in [nibView constraints]) {
-            // identifier 是在xib中指定的
-            if ([constraint.identifier isEqualToString:@"header-title-conn"] ||
-                [constraint.identifier isEqualToString:@"header-detail-conn"]) {
-                [nibView removeConstraint:constraint];
-            }
-        }
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.msgDetailLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeBottom multiplier:1 constant:8];
         constraint.identifier = @"header-detail-conn";
         [nibView addConstraint:constraint];
     }else {
-        // 断开msgTitleLabel和heade的约束
-        for (NSLayoutConstraint *constraint in [nibView constraints]) {
-            // identifier 是在xib中指定的
-            if ([constraint.identifier isEqualToString:@"header-detail-conn"] ||
-                [constraint.identifier isEqualToString:@"header-title-conn"]) {
-                [nibView removeConstraint:constraint];
-            }
-        }
-        
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.msgTitleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.headerView attribute:NSLayoutAttributeBottom multiplier:1 constant:8];
         constraint.identifier = @"header-title-conn";
         [nibView addConstraint:constraint];
     }
 }
 
-#pragma mark 载入并约束视图
 /**
- * 从 xib 文件中获得 UIView ， 并返回
+ *  重置 header 和 title detail label 的约束，动态显示 title
+ * 
+ *  @param nibView  header title detail 的父视图
  */
-- (UIView *)loadViewWithNibName:(NSString *)nibName {
-    NSArray *array = [[UINib nibWithNibName:nibName bundle:nil] instantiateWithOwner:self options:@{}];
-    UIView *nibView = [array firstObject];
-    // clear nibView background color
-    nibView.backgroundColor = [UIColor clearColor];
-    return nibView;
+- (void)resetHeaderAndTitleAndDetailConstrain:(UIView *)nibView {
+    // 断开msgTitleLabel和heade的约束
+    for (NSLayoutConstraint *constraint in [nibView constraints]) {
+        // identifier 是在xib中指定的
+        if ([constraint.identifier isEqualToString:@"header-detail-conn"] ||
+            [constraint.identifier isEqualToString:@"header-title-conn"]) {
+            [nibView removeConstraint:constraint];
+        }
+    }
 }
 
+#pragma mark 载入并约束视图
 /**
  * 将 view 添加到当前视图，并添加约束 V:|[view]| H:|[view]|
  */
@@ -133,23 +120,23 @@ static NSInteger tTime = 0x33;
  * 第一种方案，使用 viewWithTag: 方法，遍历所有子视图查找与之对应的tag
  */
 - (void)connectToView {
-    [self outletPropertyName:@"appIcon" toTag:tAppIcon];
-    [self outletPropertyName:@"appNameLabel" toTag:tAppName];
-    [self outletPropertyName:@"timeLabel" toTag:tTime];
-    [self outletPropertyName:@"msgTitleLabel" toTag:tMsgTitle];
-    [self outletPropertyName:@"msgDetailLabel" toTag:tMsgDetail];
+    [self outletProperty:@"appIcon" toTag:tAppIcon];
+    [self outletProperty:@"appNameLabel" toTag:tAppName];
+    [self outletProperty:@"timeLabel" toTag:tTime];
+    [self outletProperty:@"msgTitleLabel" toTag:tMsgTitle];
+    [self outletProperty:@"msgDetailLabel" toTag:tMsgDetail];
 }
 
 /**
  * 第二种方案，使用 ov_viewWithTag: 方法，只遍历直接子视图，配合tag的定义使用，可实现可视化的层级结构，例如 tag 值是 0x1f ，解析出来就是 父视图的 tag 是 1， 子视图的 tag 是15
  */
 - (void)connectFromView:(UIView *)view {
-    [view connectPropertyName:@"appIcon" tag:tAppIcon to:self];
-    [view connectPropertyName:@"appNameLabel" tag:tAppName to:self];
-    [view connectPropertyName:@"timeLabel" tag:tTime to:self];
-    [view connectPropertyName:@"msgTitleLabel" tag:tMsgTitle to:self];
-    [view connectPropertyName:@"msgDetailLabel" tag:tMsgDetail to:self];
-    [view connectPropertyName:@"headerView" tag:tHeader to:self];
+    [view connectProperty:@"appIcon" tag:tAppIcon to:self];
+    [view connectProperty:@"appNameLabel" tag:tAppName to:self];
+    [view connectProperty:@"timeLabel" tag:tTime to:self];
+    [view connectProperty:@"msgTitleLabel" tag:tMsgTitle to:self];
+    [view connectProperty:@"msgDetailLabel" tag:tMsgDetail to:self];
+    [view connectProperty:@"headerView" tag:tHeader to:self];
     
     // 添加调试信息，鉴别类型是否一样
 #if BINGDEBUG
@@ -160,15 +147,6 @@ static NSInteger tTime = 0x33;
     [self assertProperty:@"msgDetailLabel" class:[UILabel class]];
     [self assertProperty:@"headerView" class:[UIView class]];
 #endif
-}
-
-/**
- * 校验通过 viewWithTag: 获得到的属性值是否为指定类型
- */
-- (void)assertProperty:(NSString *)property class:(Class)clazz {
-    id propertyValue = [self valueForKey:property];
-    NSString *errorMsg = [NSString stringWithFormat:@"%@ 必须是 %@ 类型", property, NSStringFromClass(clazz)];
-    NSAssert([propertyValue isKindOfClass:clazz], errorMsg);
 }
 
 /**
