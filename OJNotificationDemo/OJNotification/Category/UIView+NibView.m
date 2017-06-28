@@ -20,4 +20,17 @@
     nibView.backgroundColor = [UIColor clearColor];
     return nibView;
 }
+
+#pragma mark 载入并约束视图
+/**
+ * 将 view 添加到当前视图，并添加约束 V:|[view]| H:|[view]|
+ */
+- (void)addConstraintToNibView:(UIView *)view {
+    [self addSubview:view];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    for (NSString *constStr in @[@"V:|[view]|",@"H:|[view]|"]) {
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constStr options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@{@"view":view}]];
+    }
+}
+
 @end

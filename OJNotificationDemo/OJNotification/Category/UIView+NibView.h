@@ -12,4 +12,6 @@
 
 - (UIView *)loadViewWithNibName:(NSString *)nibName;
 
+- (void)addConstraintToNibView:(UIView *)view;
+
 @end

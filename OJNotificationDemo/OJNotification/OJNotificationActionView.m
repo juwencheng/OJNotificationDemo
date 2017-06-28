@@ -51,18 +51,6 @@ static NSInteger tActionRightTag = 0x2;
     [self styleView];
 }
 
-#pragma mark 载入并约束视图
-/**
- * 将 view 添加到当前视图，并添加约束 V:|[view]| H:|[view]|
- */
-- (void)addConstraintToNibView:(UIView *)view {
-    [self addSubview:view];
-    view.translatesAutoresizingMaskIntoConstraints = NO;
-    for (NSString *constStr in @[@"V:|[view]|",@"H:|[view]|"]) {
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constStr options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@{@"view":view}]];
-    }
-}
-
 #pragma mark 绑定属性到资源文件中
 /**
  * 第一种方案，使用 viewWithTag: 方法，遍历所有子视图查找与之对应的tag
