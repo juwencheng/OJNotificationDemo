@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OJDelegates.h"
 @class OJNotificationModel;
 
 typedef enum : NSUInteger {
@@ -21,6 +22,8 @@ typedef enum : NSUInteger {
 + (void)showNotificationWithModel:(OJNotificationModel *)notification;
 
 + (void)showNotificationWithModel:(OJNotificationModel *)notification viberate:(BOOL)viberate;
+
++ (void)showNotificationWithModel:(OJNotificationModel *)notification viberate:(BOOL)viberate actionHandler:(id<OJNotificationActionDelegateAndDataSource>)handler;
 
 + (void)dismissNotification ;
 
